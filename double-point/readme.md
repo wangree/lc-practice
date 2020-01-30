@@ -27,3 +27,37 @@ public:
     }
 };
 ```
+#### 双指针（在暴力的基础上改进）
+```cpp
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        sort(nums.begin(),nums.end());
+        int len=nums.size();
+        int res=0;
+        int j=1;
+        for (int i = 0; i <len-1 ; ++i) {
+            if(i>0 && nums[i]==nums[i-1]) {
+                //i++;
+                continue;
+            }
+            j=j>=i+1?j:i+1;
+            while(j<len){
+                if(j>i+1 && nums[j]==nums[j-1]){
+                    j++;
+                    continue;
+                }
+                if(nums[j]-nums[i]>k) break;
+                if(nums[j]-nums[i]==k) {
+                    res++;
+                    break;
+                }
+                j++;
+            }
+            
+        }
+        return res;
+
+    }
+};
+```
