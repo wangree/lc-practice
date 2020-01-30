@@ -171,5 +171,43 @@ public:
     }
 };
 ```
+#### 双指针版本
+```cpp
+class Solution {
+public:
+    bool backspaceCompare(string S, string T) {
+        int i = S.size() - 1;
+        int j = T.size() - 1;
+        int count_i = 0;
+        int count_j = 0;
+        while (i >= 0 || j >= 0) {
+            if (i>=0 && S[i] == '#') {
+                i--;
+                count_i++;
+                continue;
+            }
+            if (j>=0 && T[j] == '#') {
+                j--;
+                count_j++;
+                continue;
+            }
+            if (i>=0 && count_i){
+                i--;
+                count_i--;
+                continue;
+            }
+            if (j>=0 && count_j){
+                j--;
+                count_j--;
+                continue;
+            }
+            if ( i>=0 && j>=0 && S[i] != T[j]) return false;
+            if ((i>=0)!=(j>=0)) return false;
+            i--;
+            j--;
+        }
+        return true;
+    }
 
-
+};
+```
