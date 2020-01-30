@@ -151,7 +151,7 @@ public:
         int index=0;
         for(auto i:S){
             if(i!='#'){
-                S[index++]=i;
+                S[index++]=i;//注意这里使得每一个index走到下一步的位置是一个可以通用的习惯
             }else{
                 index==0?0:--index;
             }
