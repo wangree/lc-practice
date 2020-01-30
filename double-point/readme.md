@@ -61,3 +61,37 @@ public:
     }
 };
 ```
+#### 右指针版
+之所以更快是因为有low<high这条，不仅使得low遍历时不用到len长度，而且high在增加时low不用改变
+```cpp
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        sort(nums.begin(),nums.end());
+        int len=nums.size();
+        int res=0;
+        int high=1;
+        int low=0;
+        for (; high <len ; ++high) {
+            if(high>low+1 && nums[high]==nums[high-1]) continue;
+            while (low<high){
+                if(low>0 && nums[low]==nums[low-1]) {
+                    low++;
+                    continue;
+                }
+                if((nums[high]-nums[low])>k){
+                    low++;
+                } else if((nums[high]-nums[low])<k){
+                    break;
+                }else{
+                    res++;
+                    break;
+                }
+            }
+        }
+        return  res;
+
+    }
+};
+```
+
