@@ -94,4 +94,82 @@ public:
     }
 };
 ```
+### lc844
+#### 栈
+```cpp
+class Solution {
+public:
+    bool backspaceCompare(string S, string T) {
+        stack<char> s;
+        int si = 0;
+        stack<char> t;
+        int ti = 0;
+        while(S[si])
+        {
+            if(S[si] == '#')
+            {
+                if(!s.empty())
+                {
+                    s.pop();
+                }
+            }
+            else
+            {
+                s.push(S[si]);
+            }
+            ++si;
+        }
+        while(T[ti])
+        {
+            if(T[ti] == '#')
+            {
+                if(!t.empty())
+                    t.pop();
+            }
+            else
+                t.push(T[ti]);
+            ++ti;
+        }
+        while(!s.empty() && !t.empty())
+        {
+            if(s.top() != t.top())
+                return false;
+            s.pop();
+            t.pop();
+        }
+        if(!s.empty() || !t.empty())
+            return false;
+        return true;
+    }
+};
+```
+#### 采用remove元素的策略(快慢指针）
+```cpp
+class Solution {
+public:
+    int remove (string& S){
+        int index=0;
+        for(auto i:S){
+            if(i!='#'){
+                S[index++]=i;
+            }else{
+                index==0?0:--index;
+            }
+        }
+        return index;
+    }
+    bool backspaceCompare(string S, string T) {
+        int findex=remove(S);
+        int sindex=remove(T);
+        if(findex!=sindex) return false;
+        else{
+            S=S.substr(0,findex);
+            T=T.substr(0,findex);
+            if(S.compare(T)==0)return true;
+            else return false;
+        }
+    }
+};
+```
+
 
