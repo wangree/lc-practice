@@ -271,3 +271,61 @@ public:
     }
 };
 ```
+### lc925 长按键入
+```cpp
+class Solution {
+public:
+    bool isLongPressedName(string name, string typed) {
+        int index = 0;
+        int i = 0;
+        int name_len = name.size();
+        int typed_len = typed.size();
+        while(i<name_len || index<typed_len) {
+            if(i<typed_len && index<typed_len && name[i]!=typed[index]){
+                if(i>0 && typed[index]==name[i-1]) {
+                    index++;
+                    continue;
+                }
+                else return false;
+            }
+            if(i<name_len && index>=typed_len)
+                return false;
+            //if(i>=name_len && name[name_len-1]!=typed[index])
+                //return false;按题意不会出现这种情况
+            index++;
+            i++;
+        }
+        return true;
+    }
+};
+```
+换个思路遍历typed会更快
+```cpp
+class Solution {
+public:
+    bool isLongPressedName(string name, string typed) {
+        int j = 0, len = name.size();
+    for(int i = 0; i < typed.size(); i++)
+    {
+        if(typed[i] == name[j] && j < len)
+        {
+            j++;
+            continue;
+        }
+        else if(j > 0 && typed[i] == name[j-1]) //首字母不同时j-1超出索引范围
+        {
+            continue;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    if (j == len)
+        return true;
+    else
+        return false;
+
+    }
+};
+```
