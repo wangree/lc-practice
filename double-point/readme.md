@@ -211,3 +211,64 @@ public:
 
 };
 ```
+### lc18 四数之和
+此题为此类题的究极形态，和三数之和的思路相似，由此可以掌握通用的去重（尤其是l>i+1这样的条件），求几数之和的方法，另外max和min的剪枝也是通用的，也是亮点
+```cpp
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int> &nums,int target) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> res;
+        vector<int> temp;
+        int len = nums.size();
+        if(len<4) return res;
+        int j = 0;
+        int k = 0;
+        int sum = 0;
+        int max = 0;
+        int min = 0;
+        for (size_t i = 0; i < len - 3; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            min=nums[i]+nums[i+1]+nums[i+2]+nums[i+3];
+            if(target<min) break;
+            max=nums[i]+nums[len-3]+nums[len-2]+nums[len-1];
+            if(target>max) continue;
+
+            for (int l = i + 1; l < len - 2; ++l) {
+                if (l > i+1 && nums[l] == nums[l - 1]) {
+                    continue;
+                }
+                min=nums[i]+nums[l]+nums[l+1]+nums[l+2];
+                if(target<min) break;
+                max=nums[i]+nums[l]+nums[len-2]+nums[len-1];
+                if(target>max) continue;
+                j = l + 1;
+                k = len - 1;
+                while (j < k) {
+                    sum=nums[i]+nums[j]+nums[k]+nums[l];
+                    if (sum > target) {
+                        k--;
+                    } else if (sum < target) {
+                        j++;
+                    } else {
+                        if (j - 1 > l && nums[j] == nums[j - 1])//避开第一次遇到nums[j]
+                        {
+                            j++;
+                            continue;
+                        } else if (k + 1 < len && nums[k] == nums[k + 1])//避开第一次遇到nums[k]
+                        {
+                            k--;
+                            continue;
+                        }
+                        res.push_back({nums[i], nums[l],nums[j], nums[k]});
+                        k--;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+};
+```
