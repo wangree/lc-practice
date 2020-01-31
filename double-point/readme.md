@@ -219,7 +219,6 @@ public:
     vector<vector<int>> fourSum(vector<int> &nums,int target) {
         sort(nums.begin(), nums.end());
         vector<vector<int>> res;
-        vector<int> temp;
         int len = nums.size();
         if(len<4) return res;
         int j = 0;
