@@ -7,6 +7,23 @@
 体会到双指针的核心就是怎么挪指针。
 ### lc3
 无重复字符的最长子串
+```cpp
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        static int slice[128];
+        memset(slice, 0, sizeof(slice));
+        int res = 0;
+        for (int i=0,j=0; j < s.size(); ++j) {
+            i = max(i, slice[s[j]]);
+            slice[s[j]] = j + 1;
+            res = max(res, j - i+1);
+        }
+        if(res==0 && s.size()>0) return 1;
+        return res;
+    }
+};
+```
 
 ### lc532
 几种解法：
