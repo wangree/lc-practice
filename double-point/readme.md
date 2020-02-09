@@ -19,12 +19,51 @@ public:
             slice[s[j]] = j + 1;
             res = max(res, j - i+1);
         }
-        if(res==0 && s.size()>0) return 1;
         return res;
     }
 };
 ```
-
+使用slice[128]是因为ASCII码里共有128个，从0开始至127；这个算法的关键是左指针i的移动；一开始我写的时候会用hashmap记录右指针遍历过的字母及其位置+1，如果发现重复就挪动左指针向右一位，hashmap删除i,右指针不动继续;后来改进为发生上述情况后左指针挪动到发生重复的字母上次位置的右边（hashmap已经记录）；后来引入了slice的方法，不再查找hashmap而是比较i和slice[s[j]]的大小，s[j]在i之前出现则说明i开始的子串无重复，在i之后出现则说明已经重复了，那就把i跳到s[j]前一次出现位置+1的位置;每次更新到slice[s[j]]且更新res。
+此题的比较典型的子串使用双指针的情况，关键还是i怎么挪动，j需不需要每次i挪动的时候再重置，用slice[s[j]]作用和hashmap是一样的，max这句是使得我们不需要在遍历一个新的子串时清空hashmap
+### lc26
+删除排序数组中的重复项,这是非常经典的去重双指针算法；
+```cpp
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums)
+    {
+        int num   = 0;
+        int count = 0;
+        int j   = 0;
+        int len = nums.size();
+        while (j<len) {
+            if (j >0 && nums[j] == nums[j-1]){
+                j++;
+                continue;
+            }
+            nums[count++] = nums[j];
+            j++;
+        }
+        return count;
+    }
+};
+```
+### lc27
+与lc26的算法几乎如出一辙
+```cpp
+class Solution {
+public:
+    int removeElement(vector<int> &nums, int val) {
+        int j = 0;
+        for (int i = 0; i <nums.size() ; ++i) {
+            if (nums[i]!=val){
+                nums[j++]=nums[i];
+            }
+        }
+        return j;
+    }
+};
+```
 ### lc532
 几种解法：
 #### hasmap
