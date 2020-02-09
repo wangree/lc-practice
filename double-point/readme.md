@@ -64,6 +64,179 @@ public:
     }
 };
 ```
+### lc28
+```cpp
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+                int lenstr = haystack.size();
+        int leneedle = needle.size();
+        int i = 0;
+        int j = 0;
+        int res = 0;
+        if(leneedle==0) return 0;
+        while (i < lenstr-leneedle+1) {//用lenstr-leneedle+1而不是lenstr节省了很多时间，1是为了应付lenstr==leneedle的情况
+                j = 0;
+                while (j < leneedle && needle[j] == haystack[j+i]){
+                    j++;
+                if(j==leneedle) return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+};
+```
+此题算法不算特别，除了注释的部分
+### lc88 合并有序数组
+```cpp
+class Solution {
+ public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        vector<int> nums3(nums1.begin(),nums1.end()-n);
+        int i = 0;
+        int j = 0;
+        int p = 0;
+        while(i<m && j<n){
+            nums1[p++]=nums3[i]<nums2[j]?nums3[i++]:nums2[j++];
+        }
+        if(j==n){
+            while (i<m){
+                nums1[p++] =nums3[i++]; 
+            }
+        }else{
+            while (j<n){
+                nums1[p++] =nums2[j++];
+            }
+        }
+    }
+};
+```
+这是非常经典的双指针算法，注意的一点是要copy出一个nums3来；使用的是while(i<len1 && j<len2)的双字符串型双指针
+### lc125 验证回文串
+```cpp
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int i=0;
+        int j=s.size()-1;
+        while(i<j){
+            if (s[i]<'0'||('9'<s[i]&&s[i]<'A')||s[i]>'z'||('Z'<s[i]&&s[i]<'a')) {i++;
+            continue;}
+            if (s[j]<'0'||('9'<s[j]&&s[j]<'A')||s[j]>'z'||('Z'<s[j]&&s[j]<'a')) {j--;
+            continue;}
+            if(s[i]!=s[j] && tolower(s[i])!=tolower(s[j])  ) return false;
+            i++;
+            j--;
+            
+        }
+        return true;
+        
+    }
+};    
+```
+使用的是i<j型的相遇型双指针，也是非常经典
+
+## 链表类 快慢指针型
+### lc141 环形链表
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode* temp=head;
+        ListNode* slow=head;
+        if(head!=NULL) temp=temp->next;
+        while(slow!= NULL && temp!=NULL && temp->next!=NULL){
+             if(temp==slow && temp!=NULL) return true;
+             slow = slow->next;
+             temp = temp->next->next;
+        }
+        return false;
+    }
+};
+```
+链表中快慢指针的使用非常经典
+### lc19 删除链表的倒数第N个节点
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* dummy = (ListNode*)malloc(sizeof(ListNode));
+        dummy->next=head;
+        dummy->val=0;
+        ListNode* fast = dummy;
+        ListNode* slow = dummy;
+        while(fast!=NULL){
+           fast=fast->next;
+           if(n>=0) {
+               n--;
+               continue;}
+               slow=slow->next;
+        }
+        slow->next=slow->next->next;
+        return dummy->next;    
+    }
+};
+```
+快慢指针的使用也是非常经典，也注意dummy指针的必要性
+### lc234 回文链表
+```cpp
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        if(head==NULL) return true;//有些奇怪的用例，写出来比较好
+        ListNode* halfTail = find_half_of_list(head);
+        ListNode* halfHead = reverseList(halfTail->next);
+        while(head!=NULL && halfHead!=NULL){
+            if(head->val!=halfHead->val) return false;
+            head = head->next;
+            halfHead=halfHead->next;
+        }
+        return true;
+    }
+    ListNode* find_half_of_list(ListNode* head){
+        ListNode* fast=head;
+        ListNode* slow=head;
+        while ( fast->next && fast->next->next){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        return  slow;
+    }
+
+    ListNode* reverseList(ListNode* head){
+        ListNode* prev = NULL;
+        ListNode* temp = head;
+        ListNode* reverseNext;
+        while(temp){
+            reverseNext=temp->next;
+            temp->next=prev;
+            prev=temp;
+            temp=reverseNext;
+        }
+        return prev;
+    }
+};
+```
+使用了快慢指针来找链表最中间的位置，注意考虑下奇偶数的问题；然后将后半段进行比较。
+### 
+## 综合类
 ### lc532
 几种解法：
 #### hasmap
@@ -123,6 +296,7 @@ public:
     }
 };
 ```
+
 #### 右指针版
 之所以更快是因为有low<high这条，不仅使得low遍历时不用到len长度，而且high在增加时low不用改变
 ```cpp
