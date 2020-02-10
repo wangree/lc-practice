@@ -843,7 +843,7 @@ public:
             if(i<name_len && index>=typed_len)
                 return false;
             //if(i>=name_len && name[name_len-1]!=typed[index])
-                //return false;按题意不会出现这种情况
+                //return false;按题意不会出现这种情况,即name结束,typed有剩余的情况
             index++;
             i++;
         }
