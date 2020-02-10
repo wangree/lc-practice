@@ -81,31 +81,6 @@ public:
     }
 };
 ```
-## 双串基本型
-### lc28 实现strStr()
-```cpp
-class Solution {
-public:
-    int strStr(string haystack, string needle) {
-                int lenstr = haystack.size();
-        int leneedle = needle.size();
-        int i = 0;
-        int j = 0;
-        int res = 0;
-        if(leneedle==0) return 0;
-        while (i < lenstr-leneedle+1) {//用lenstr-leneedle+1而不是lenstr节省了很多时间，1是为了应付lenstr==leneedle的情况
-                j = 0;
-                while (j < leneedle && needle[j] == haystack[j+i]){
-                    j++;
-                if(j==leneedle) return i;
-            }
-            i++;
-        }
-        return -1;
-    }
-};
-```
-此题算法不算特别，除了注释的部分
 ## 合并类(打带法）
 ### lc88 合并有序数组
 ```cpp
@@ -703,7 +678,32 @@ public:
 };
 ```
 像是回文和两数之和类型的变形
-## 双串复杂类型
+## 双串综合型
+### lc28 实现strStr()
+```cpp
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+                int lenstr = haystack.size();
+        int leneedle = needle.size();
+        int i = 0;
+        int j = 0;
+        int res = 0;
+        if(leneedle==0) return 0;
+        while (i < lenstr-leneedle+1) {//用lenstr-leneedle+1而不是lenstr节省了很多时间，1是为了应付lenstr==leneedle的情况
+                j = 0;
+                while (j < leneedle && needle[j] == haystack[j+i]){
+                    j++;
+                if(j==leneedle) return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+};
+```
+此题算法不算特别，除了注释的部分
+
 ### lc844 比较含退格的字符串
 #### 栈
 ```cpp
