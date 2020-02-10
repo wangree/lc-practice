@@ -781,6 +781,7 @@ public:
     }
 };
 ```
+借鉴了移动类双指针的思路，但难点在于如何队多次退格进行处理
 #### 双指针版本
 ```cpp
 class Solution {
@@ -821,6 +822,7 @@ public:
 
 };
 ```
+很琐碎，if continue的多次使用，count_i--的使用；从尾到头式的遍历；或的循环条件（用与的话可能count_j还不为0就结束了）都是难点
 ### lc925 长按键入
 ```cpp
 class Solution {
@@ -849,6 +851,7 @@ public:
     }
 };
 ```
+也使用了或的循环条件，与上题有一定的相似之处
 换个思路遍历typed会更快
 ```cpp
 class Solution {
