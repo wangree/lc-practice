@@ -2,6 +2,7 @@
 对于双指针，大循环while里有两种循环，一种用if continue,这可以只需要给出移动一步的条件再continue即可，而另外一种需要while滑到头的，需要在这层while里加上
 外层while的循环条件
 对比lc-345.cpp与lc-345compare.cpp，可以看看其他人是怎么写的，应该有所借鉴
+迭代时要根据迭代条件来想迭代次数与迭代中的操作而不是囫囵吞枣
 
 ### lc3
 无重复字符的最长子串
@@ -266,6 +267,8 @@ public:
 };
 ```
 快慢指针的使用也是非常经典，也注意dummy指针的必要性
+
+
 ### lc234 回文链表
 ```cpp
 class Solution {
@@ -306,6 +309,42 @@ public:
 };
 ```
 使用了快慢指针来找链表最中间的位置，注意考虑下奇偶数的问题；然后将后半段进行比较。
+
+### lc61 旋转链表
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head==NULL) return head;
+        ListNode* temp = head;
+        int length=1;
+        while(temp->next!=NULL){
+            temp=temp->next;
+            length++;
+        }
+        temp->next=head;
+        k%=length;
+        int opt = length-k;
+        temp=head;
+        while(opt>1){
+            temp=temp->next;
+            opt--;
+        }
+        head=temp->next;
+        temp->next=NULL;
+        return head;
+    }
+};
+```
+环形链表的使用，和双指针其实关系不大
 ## 回文类
 ### lc125 验证回文串
 ```cpp
