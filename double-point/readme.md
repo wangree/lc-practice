@@ -609,7 +609,32 @@ public:
 };                                             
 ```
 这道题一开始考虑得太细，总想着要在temp_distance < distance时停下来，而事实上这样的算法是错的；同时注意numeric_limits<int>::max()的使用。
-    
+
+### lc 二维数组中的查找
+```cpp
+class Solution {
+ public:
+    bool findNumberIn2DArray(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty()) return false;
+        int leni=matrix[0].size();
+        int i=leni-1;
+        int lenj = matrix.size();
+        int j=0;
+        
+        while(i>=0 && j<lenj)
+            {
+                if(matrix[j][i]==target) return true;
+                if(matrix[j][i]>target) {
+                    i--;
+                }else{
+                    j++;
+                    }
+            }
+        return false;
+    }
+};
+```
+这是对和差双指针的借鉴   
 ### lc11 盛水最多的容器
 ``` cpp
 class Solution
