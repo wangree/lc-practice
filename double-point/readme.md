@@ -742,6 +742,36 @@ public:
 };
 ```
 像是回文和两数之和类型的变形
+
+## 荷兰国旗算法
+```cpp
+class Solution {
+ public:
+    void sortColors(vector<int>& nums) {
+         int p0=0;
+         int p2=nums.size()-1;
+         int curr=0;
+         int temp=0;
+         while (curr<=p2){
+             if(nums[curr]==2){
+                 nums[curr]=nums[p2];
+                 nums[p2]=2;
+                 p2--;
+             } else if(nums[curr]==0){
+                 if(nums[p0]==1){
+                 nums[curr]=nums[p0];//p0位置上只会是0或者1，2都会被换走,可能都不是，所以这个if条件可有可无
+                 nums[p0]=0;}
+                 p0++;
+                 curr++;
+                 
+                 
+             }else {
+                 curr++;
+             }
+         }
+    }
+};
+```
 ## 双串综合型
 ### lc28 实现strStr()
 ```cpp
