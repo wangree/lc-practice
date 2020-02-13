@@ -48,6 +48,24 @@ public:
     }
 };
 ```
+### lc80 删除排序数组中的重复项||
+```cpp
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i=0;
+        for(int x:nums){
+            if(i<2||x!=nums[i-2]){
+                nums[i]=x;
+                i++;
+            }
+        }
+        return i;
+    }
+};
+```
+可以借鉴别人的思路
+
 ### lc27
 与lc26的算法几乎如出一辙
 ```cpp
