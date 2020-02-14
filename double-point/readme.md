@@ -328,6 +328,7 @@ public:
 ```
 使用了快慢指针来找链表最中间的位置，注意考虑下奇偶数的问题；然后将后半段进行比较。
 
+## 链表类 基本型
 ### lc61 旋转链表
 ```cpp
 /**
@@ -363,6 +364,63 @@ public:
 };
 ```
 环形链表的使用，和双指针其实关系不大
+
+### lc 分隔链表
+```cpp
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* smallhead=(ListNode*)malloc(sizeof(ListNode));
+        ListNode* largehead=(ListNode*)malloc(sizeof(ListNode));
+        ListNode* temp=head;
+        ListNode* small=smallhead;
+        ListNode* large=largehead;
+        while(temp){
+            if(temp->val<x){
+                small->next=temp;
+                small=small->next;
+            }else{
+                large->next=temp;
+                large=large->next;
+                }
+            temp=temp->next;  
+        }
+        large->next=NULL;
+        small->next=largehead->next;
+        return smallhead->next;   
+    }
+
+};
+```
+注意这中间对创建链表的启示
+创建链表法出错：
+```cpp
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* smallhead=(ListNode*)malloc(sizeof(ListNode));
+        ListNode* largehead=(ListNode*)malloc(sizeof(ListNode));
+        ListNode* temp=head;
+        ListNode* small=smallhead;
+        ListNode* large=largehead;
+        while(temp){
+            if(temp->val<x){
+                small->next=temp;
+                small=small->next;
+            }else{
+                large->next=temp;
+                large=large->next;
+                }
+            temp=temp->next;  
+        }
+        large->next=NULL;
+        small->next=largehead->next;
+        return smallhead->next;   
+    }
+
+};
+```
+
 ## 回文类
 ### lc125 验证回文串
 ```cpp
