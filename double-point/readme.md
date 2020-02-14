@@ -393,7 +393,7 @@ public:
 };
 ```
 注意这中间对创建链表的启示
-创建链表法出错：
+创建链表法出错，lc提示alloc-delloc-mismatch，所以这里就是说不能去申请新的链表而使用原链表，因为这里leetcode后台只会释放原链表：
 ```cpp
 class Solution {
 public:
