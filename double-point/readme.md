@@ -243,9 +243,9 @@ public:
     bool hasCycle(ListNode *head) {
         ListNode* temp=head;
         ListNode* slow=head;
-        if(head!=NULL) temp=temp->next;
-        while(slow!= NULL && temp!=NULL && temp->next!=NULL){
-             if(temp==slow && temp!=NULL) return true;
+        if(head) temp=temp->next;//错开一步
+        while( temp && temp->next){
+             if(temp==slow ) return true;
              slow = slow->next;
              temp = temp->next->next;
         }
@@ -254,6 +254,41 @@ public:
 };
 ```
 链表中快慢指针的使用非常经典
+### lc142 环形链表||
+```cpp
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        //phase1
+        ListNode* fast;
+        ListNode* slow;
+        if(head && head->next){
+            fast=head->next->next;
+            slow=head->next;
+            }else{
+                return NULL;
+            }
+        while(fast && fast->next){
+            if(slow==fast) break;
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        if(fast==NULL||fast->next==NULL) return NULL;
+        //pahse2
+        ListNode* temp=head;
+        while(temp!=fast){
+            temp=temp->next;
+            fast=fast->next;    
+        } 
+        return fast;
+
+
+    }
+};
+```
+快慢指针追及问题，快指针速度为2v,慢指针为v,相遇的条件为
+(2v-v)*T=L(L为环长)
+可知两者相遇的位置是慢指针走到距离头指针环长位置处，因而第二阶段，指针temp从头指针出发和fast以相同速度前进,两者相遇应在环入口处
 ### lc19 删除链表的倒数第N个节点
 ```cpp
 /**
