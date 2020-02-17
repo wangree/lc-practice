@@ -99,6 +99,46 @@ int minSubArrayLen(int s, vector<int>& nums)
 }
 ```
 官方解法有几个好处：1.nums[0]被直接加进sum里，不需要给初值，也不需要对nums长度做判断；2不需要i++之后再对i做判断，而我的写法是不能避免的
+```cpp
+//类似官方题解的方法
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int i=0;
+        int j=0;
+        int len=nums.size();
+        if(len==0) return 0;
+        int sum=0;
+        int res=len+1;
+        /*while(i<len && j<len){
+            sum+=nums[j];
+            if(sum>=s){
+                res=min(res,j-i+1); 
+                sum-=nums[i];
+                i++;
+                continue;
+            }
+           j++;
+        }
+        */
+        while (i < len) {
+        if(sum<s){
+            sum += nums[i];
+        }
+        if(sum>=s) {
+            res = min(res, i + 1 - j);
+            sum -= nums[j++];
+        }
+        if(sum<s)
+        {
+            i++;
+        }
+    }
+        res=res<=len?res: 0;
+        return res;
+    }
+};//需要注意的是每一次对ij的改变即对sum的改变紧接着下一步都应该作以判断。
+```
 ### lc80 删除排序数组中的重复项||
 ```cpp
 class Solution {
