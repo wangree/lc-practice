@@ -48,6 +48,57 @@ public:
     }
 };
 ```
+### lc209 长度最小的子数组
+```cpp
+class Solution {
+public:
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int i=0;
+        int j=0;
+        int len=nums.size();
+        if(len==0) return 0;
+        int sum=nums[0];
+        int res=len+1;
+        while(/*i<len && */j<len){
+            if(sum<s){
+                j++;
+                if(j<len)sum+=nums[j];
+            }else{
+                res=min(res,j-i+1); 
+                sum-=nums[i];
+                i++;
+                /*if(i>j && i<len) {
+                    j=i;
+                    sum=nums[j];
+                }*/没必要，思维误区
+            }
+        }
+        if(res>len) res=0;//改成条件表达式会快很多
+        return res;
+    }
+};
+```
+类似于滑窗，但是要注意i++,j++之后的越界问题，i追上j之后的问题（这个问题其实并不存在）和res为初始值的问题，这个代码写的并不好。
+
+官方题解：
+```cpp
+int minSubArrayLen(int s, vector<int>& nums)
+{
+    int n = nums.size();
+    int ans = INT_MAX;
+    int left = 0;
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += nums[i];
+        while (sum >= s) {
+            ans = min(ans, i + 1 - left);
+            sum -= nums[left++];
+        }
+    }
+    return (ans != INT_MAX) ? ans : 0;
+}
+```
+官方解法有几个好处：1.nums[0]被直接加进sum里，不需要给初值，也不需要对nums长度做判断；2不需要i++之后再对i做判断，而我的写法是不能避免的
 ### lc80 删除排序数组中的重复项||
 ```cpp
 class Solution {
