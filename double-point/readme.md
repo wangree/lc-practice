@@ -405,7 +405,7 @@ public:
 };
 ```
 完全借鉴了lc142的思路，把数组当作环形链表处理；具体分析可见：
-[快慢指针的解释]https://leetcode-cn.com/problems/find-the-duplicate-number/solution/kuai-man-zhi-zhen-de-jie-shi-cong-damien_undoxie-d/
+[快慢指针的解释]（https://leetcode-cn.com/problems/find-the-duplicate-number/solution/kuai-man-zhi-zhen-de-jie-shi-cong-damien_undoxie-d/）
 ### lc19 删除链表的倒数第N个节点
 ```cpp
 /**
