@@ -380,6 +380,32 @@ public:
 快慢指针追及问题，快指针速度为2v,慢指针为v,相遇的条件为
 (2v-v)*T=L(L为环长)
 可知两者相遇的位置是慢指针走到距离头指针环长位置处，因而第二阶段，指针temp从头指针出发和fast以相同速度前进,两者相遇应在环入口处
+### lc287 lc142在中数组中的应用
+```cpp
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int slow=0;
+        int fast=0;
+        while(true){
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+            if(slow==fast){
+                break;
+            }            
+        }
+        int finder=0;
+        while(true){
+            fast=nums[fast];
+            finder=nums[finder];
+            if(fast==finder) break;
+        }
+        return finder;    
+    }
+};
+```
+完全借鉴了lc142的思路，把数组当作环形链表处理；具体分析可见：
+[快慢指针的解释]https://leetcode-cn.com/problems/find-the-duplicate-number/solution/kuai-man-zhi-zhen-de-jie-shi-cong-damien_undoxie-d/
 ### lc19 删除链表的倒数第N个节点
 ```cpp
 /**
