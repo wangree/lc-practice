@@ -56,7 +56,60 @@ class Solution {
         return mid;
     }
 };
+####二分写法3 递归二分
+```cpp
+class Solution {
+ public:
+    int mySqrt(int x) {
+       if(x<2) return x;
+       int left=2;
+       int right=x/2;
+       return dfs_binary(left,right,x);
+    }
+    
+    int dfs_binary(int left,int right,int x){
+        if(left>right) return right;
+        int mid=(left+right)/2;
+        if((long)mid*mid==x) return mid;
+        else if((long)mid*mid>x) return dfs_binary(left,mid-1,x);
+        else return dfs_binary(mid+1,right,x);
+    }
+
+};
+
+```
 ```
 二分法写法2，比较好理解，但注意mid的初始化和在循环中的位置，注意循环条件；还有要注意在本题中x<2分支处理了0，1，初值left==mid或者上一个方法中left>ight的处理处理了3或者3，4，后面才进入二分的逻辑
 ### 牛顿下山法
+```cpp
+class Solution {
+ public:
+    int mySqrt(int x) {
+        if(x<2) return x;
+        double x0=x;
+        double x1=(x0+x/x0)/2;;
+        while(abs(x0-x1)>=1){
+            x0=x1;
+            x1=(x0+x/x0)/2;
+        }
+        return x1;
+    }
+};
+注意数据类型用double,float精确度不够；另外最精确的是x1不是x0
+```
+### 非二分递归
+```cpp
+class Solution {
+ public:
+    int mySqrt(int x) {
+        if(x<2) return x;
+        int left = mySqrt(x>>2)<<1;
+        int right=left+1;
+        return (long)right*right>x?left:right;
+    }
+    
+
+};
+```
+注意最后一句的处理,由于计算机语言向下取整所以用right来补足1;位运算大幅度提升乘除法速度
 
