@@ -112,7 +112,7 @@ class Solution {
 };
 ```
 注意最后一句的处理,由于计算机语言向下取整所以用right来补足1;位运算大幅度提升乘除法速度
-## 278 [第一个错误的版本](https://leetcode-cn.com/problems/first-bad-version/)
+## lc278 [第一个错误的版本](https://leetcode-cn.com/problems/first-bad-version/)
 ```cpp
 // Forward declaration of isBadVersion API.
 bool isBadVersion(int version);
