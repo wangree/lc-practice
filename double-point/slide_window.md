@@ -28,7 +28,8 @@ public:
 滑窗内某字母最大出现次数而不是当前滑窗的最大次数，也就是说只有在当前滑窗内的某字母出现次数大于某字母历史最大次数，maxcount才会更新，否则历史
 maxcount,能这么做的原因在满足right-left+1-maxcount>k)条件时，left++,此时的right-left+1=k+maxcount,后面新滑窗的位置right-left+1<K+maxcount时
 说明这时的res不够大不需要更新，只有maxcount更新时res才会更新。另外要说一点写代码的技巧，不需要再真正更新的时候将条件单列出来更新，这样会很难
-写容易出错，只需要随着一次迭代写进去即可，像res=res=max(res,right-left+1),很多时候res并没有更新，而if(right-left+1-maxcount>k)也不必写成while
+写容易出错，只需要随着一次迭代写进去即可，像res=res=max(res,right-left+1),很多时候res并没有更新，而if(right-left+1-maxcount>k)也不必写成while；
+另外这种做法能找到最大的依据：左指针是连续移动的，因此左指针不可能错过数组中任何元素，右指针同步移动，子串长度只在能增长的时候增长，因此以任何元素开头的比初始长度大的子串都不会被错过。
 
 ### lc3 无重复字符的最长子串
 ```cpp
