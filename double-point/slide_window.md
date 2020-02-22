@@ -30,8 +30,7 @@ maxcount,能这么做的原因在满足right-left+1-maxcount>k)条件时，left+
 说明这时的res不够大不需要更新，只有maxcount更新时res才会更新。另外要说一点写代码的技巧，不需要再真正更新的时候将条件单列出来更新，这样会很难
 写容易出错，只需要随着一次迭代写进去即可，像res=res=max(res,right-left+1),很多时候res并没有更新，而if(right-left+1-maxcount>k)也不必写成while
 
-### lc3
-无重复字符的最长子串
+### lc3 无重复字符的最长子串
 ```cpp
 class Solution {
 public:
