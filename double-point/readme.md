@@ -296,6 +296,62 @@ public:
 ```
 完全借鉴了lc142的思路，把数组当作环形链表处理；具体分析可见：
 [快慢指针的解释](https://leetcode-cn.com/problems/find-the-duplicate-number/solution/kuai-man-zhi-zhen-de-jie-shi-cong-damien_undoxie-d/)
+### lc457 环形数组循环
+```cpp
+class Solution {
+public:
+    void setZero(vector<int>& nums,int i){
+        //nums[i]=0;
+        int len = nums.size();
+        int j = 0;
+        while(true){
+            j = (i+nums[i]+500*len)%len;
+            
+            if(nums[j]==0||nums[i]*nums[j]<0) {
+                nums[i]=0;
+                break;}
+            nums[i]=0;
+            i=j;
+            
+        }
+    }
+    bool circularArrayLoop(vector<int>& nums) {
+        int slow=0;
+        int fast=0;
+        int len=nums.size();
+        int last_slow=0;
+        int last_fast=0;
+        if(len<=1) return false;
+        for(int i=0;i<len;i++){
+        if(nums[i]==0) continue;
+        slow=i;
+        fast=i;
+        
+        while (true){
+            last_slow=slow;
+            slow=(slow+nums[slow]+500*len)%len;
+            if(last_slow==slow||nums[last_slow]*nums[slow]<0||nums[slow]==0) {
+                setZero(nums,i);
+                break ;}
+            last_fast=fast;
+            fast=(fast+nums[fast]+500*len)%len;
+            if(last_fast==fast||nums[last_fast]*nums[fast]<0||nums[fast]==0) {
+                    setZero(nums,i);
+                break ;}
+            last_fast=fast;
+            fast=(fast+nums[fast]+500*len)%len;
+            if(last_fast==fast||nums[last_fast]*nums[fast]<0||nums[fast]==0) {
+                setZero(nums,i);
+                break ;}
+            if(slow==fast) return true;
+        }
+        
+        }
+      return false;
+    }
+};
+```
+此题需要注意的地方很多：500*len为了防止有狠大的负数出现，对于数组环形的认识正确的应该是不是从0开始走时所有的元素都能遍历到，所以需要有外层for循环，另外也不是一开始就能进入循环（比如1，1，1，2）；所以只能是通过置0来剪枝，如果碰到不符合要求的nums[j],从i出发置0，直到碰到已经置0的点或者异号的位置。
 ### lc19 删除链表的倒数第N个节点
 ```cpp
 /**
