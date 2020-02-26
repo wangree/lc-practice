@@ -153,3 +153,36 @@ public int firstBadVersion(int n) {
     return left;
 }
 ```
+# 二分思想的延申
+## 加减法 lc29 两数相除
+```cpp
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        if(dividend==0) return 0;
+        if(divisor==1) return dividend;
+        if(divisor==-1) {
+            if(dividend==INT_MIN) return INT_MAX;
+            else return -dividend;  
+        }
+        long A=dividend;
+        long B=divisor;
+        int sign=(A>0) != (B>0)?-1:1;
+        if(A<0) A=-A;
+        if(B<0) B=-B;
+        return div(A,B)*sign;        
+    }
+
+    int div(long A, long B){
+        if(A<B) return 0;
+        long x_B=B;
+        int res=1;
+        while(x_B+x_B<=A){
+            x_B+=x_B;
+            res=res+res;
+        }
+        return res+div(A-x_B,B);    
+    }
+};
+二分思想（翻倍）以及递归的应用，不是十分贴切可能；另外对负数，INA_MIN的处理
+
