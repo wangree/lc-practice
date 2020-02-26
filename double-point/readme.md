@@ -208,6 +208,38 @@ public:
 };
 ```
 注意与lc349的区别
+### lc524 通过删除字母匹配到字典里的最长单词
+```cpp
+class Solution {
+public:
+    static bool compare(const string&a, const string&b){
+        if(a.size()>b.size()) return true;
+        else if(a.size()==b.size()) return a[0]<b[0];
+        else return false;
+    }
+    string findLongestWord(string s, vector<string>& d) {
+        sort(d.begin(),d.end(),compare);
+        int lenj = s.size();
+        int i=0;
+        int j=0;
+        int leni=0;
+        for(auto word:d){
+            i=0;
+            j=0;
+            leni=word.size();
+            while(i<leni && j<lenj){
+                 if(word[i]==s[j]) i++;
+                 j++;
+            }
+            if(i==leni) return word;
+        }   
+        return "";
+       
+        
+    }
+};
+```
+也是典型的打带法
 ## 链表类 快慢指针型
 ### lc141 环形链表
 ```cpp
