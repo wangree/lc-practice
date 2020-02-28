@@ -142,3 +142,48 @@ public:
     }
 };//需要注意的是每一次对ij的改变即对sum的改变紧接着下一步都应该作以判断。
 ```
+### lc567 字符串的排列
+```
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        int mp_s1[26];
+        int mp_s2[26];
+        memset(mp_s1,0,26*sizeof(int));
+        memset(mp_s2,0,26*sizeof(int));
+        int lens1=s1.size();
+        int lens2=s2.size();
+        if(lens1>lens2) return false;
+        for(int i=0;i<lens1;i++){
+            mp_s1[s1.at(i)-'a']++;
+            mp_s2[s2.at(i)-'a']++;
+        }
+        int count=0;
+        for(int i=0;i<26;i++){
+            if(mp_s1[i]==mp_s2[i]) count++;
+        }
+        int left=0;
+        int right=lens1-1;
+        int lchar=0;
+        int rchar=0;
+        while(right<lens2-1){
+            if(count==26) return true;
+            right++;
+            rchar=s2.at(right)-'a';
+            mp_s2[rchar]++;
+            lchar=s2.at(left)-'a';
+            
+            if(mp_s2[rchar]==mp_s1[rchar]) count++;
+            else if(mp_s2[rchar]==mp_s1[rchar]+1) count--;
+            mp_s2[lchar]--;
+            if(mp_s2[lchar]==mp_s1[lchar]) count++;
+            else if(mp_s2[lchar]==mp_s1[lchar]-1) count--;
+            left++;
+
+        }
+        if(count==26) return true;
+        return false;
+    }
+};
+```
+思路上其实能想到用map然后加上滑窗就很好解决；另外实现上注意指针挪动和mp更新的顺序，注意隐含的越界。
