@@ -28,3 +28,25 @@ public:
 };
 ```
 注意递归思路和结束条件，以及为何要返回p.
+
+另外以下这样写是错的，temp作为局部变量（栈区）其地址在函数结束后会被收回，无法return p
+```cpp
+class Solution {
+public:
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        return dfs(0,nums.size(),nums);
+        
+    }
+    TreeNode* dfs(int left,int right,vector<int>& nums){
+        if(left>=right) return NULL;
+        int mid=(left+right)/2;
+        TreeNode temp(nums[mid]);
+        TreeNode* p=&temp;
+        p->left=dfs(left,mid, nums);
+        p->right=dfs(mid+1,right,nums);
+        return p;
+
+
+    }
+};
+```
