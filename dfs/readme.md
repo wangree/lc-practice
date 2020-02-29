@@ -50,3 +50,26 @@ public:
     }
 };
 ```
+c语言版（c++使用malloc会报错做链表，所以最好使用new)
+```c
+    struct TreeNode* dfs(int left,int right,int* nums){
+        if(left>=right) return NULL;
+        int mid=(left+right)/2;
+        struct TreeNode* p=(struct TreeNode*)malloc(sizeof(struct TreeNode));
+        p->val=nums[mid];
+        p->left=NULL;
+        p->right=NULL;
+        p->left=dfs(left,mid, nums);
+        p->right=dfs(mid+1,right,nums);
+        return p;
+
+
+    }
+
+
+
+    struct TreeNode* sortedArrayToBST(int* nums, int numsSize) {
+        return dfs(0,numsSize,nums);
+        
+    }
+```
