@@ -187,3 +187,54 @@ public:
 };
 ```
 思路上其实能想到用map然后加上滑窗就很好解决；另外实现上注意指针挪动和mp更新的顺序，注意隐含的越界。
+### lc713
+#### 自己的解法
+```cpp
+class Solution {
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+       if(k<=1) return 0;
+       int left=0;
+       int  right=-1;
+       int len=nums.size();
+       int product=1;
+       int res=0;
+       while(true){
+           //product*=nums[right];
+           if(product<k){
+               res+=right-left+1;   
+               right++;
+               if(right==len) break;
+               product*=nums[right];
+           }else{
+           product/=nums[left];
+           left++;
+           }
+           
+       }
+       return res;
+    }
+};
+```
+这个解法是典型的滑窗，点睛之笔是res+=right-left+1，对每一个右指针的最长可能情况进行相加，方便且不会重复；这个写法起初是为了避免while套while，但效果不佳。
+#### 两层循环写法
+```cpp
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+       if(k<2) return 0;
+       int left=0;
+       int len=nums.size();
+       int product=1;
+       int res=0;
+       for(int right=0;right<len;right++){
+           product*=nums[right];
+           while(product>=k){
+               product/=nums[left];
+               left++;
+            }
+            res+=right-left+1;                     
+       }
+       return res;
+    }
+};
+```
