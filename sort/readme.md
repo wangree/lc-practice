@@ -21,7 +21,7 @@ public:
             }
 
         }
-        if(!temp_res.empty()) res.push_back(temp_res);
+        /*if(!temp_res.empty())*/ res.push_back(temp_res);
         return res;
     }
     static bool comp(vector<int>& a,vector<int>& b){
