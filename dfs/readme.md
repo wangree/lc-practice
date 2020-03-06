@@ -73,3 +73,77 @@ c语言版（c++使用malloc会报错做链表，所以最好使用new)
         
     }
 ```
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        if(nums.empty()) return NULL;
+        int mid=(nums.size()-1)/2;
+        TreeNode* root=new TreeNode(nums[mid]);
+        TreeNode* p=NULL;
+
+        stack<nodeinfo> s;
+        nodeinfo start(0,nums.size()-1);
+        start.node=root;
+        s.push(start);
+        
+        nodeinfo temp(0,0);
+        nodeinfo child(0,0);
+        int left,right,val;
+        while(!s.empty()){
+            temp=s.top();
+            s.pop();
+            mid=(temp.prevleft+temp.prevright)/2;
+            p=temp.node;
+        
+            
+            left=temp.prevleft;
+            right=mid-1;
+            if(left<=right){
+                val=(left+right)/2;
+                p->left=new TreeNode(nums[val]);
+                child.prevleft=left;
+                child.prevright=right;
+                child.node=p->left;
+                s.push(child);
+            }/*else{
+                p->left=NULL;
+            }*/;
+
+            left=mid+1;
+            right=temp.prevright;
+            if(left<=right){
+                val=(left+right)/2;
+                p->right=new TreeNode(nums[val]);
+                child.prevleft=left;
+                child.prevright=right;
+                child.node=p->right;
+                s.push(child); 
+            }/*else{
+                p->right=NULL;
+                }*/
+
+
+            }
+        return root;
+}
+        
+
+private:
+    struct nodeinfo{
+        int prevleft;
+        int prevright;
+        TreeNode* node;
+        nodeinfo(int x,int y):prevleft(x),prevright(y),node(NULL){};
+    };
+};
+```
