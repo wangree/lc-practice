@@ -1,0 +1,44 @@
+# 生成排列
+## 从底向上生成排列
+符合最小变化要求，但时间复杂度高，高于n!
+## Johnson Trotter算法
+该算法可能实现起来比较有难度，大体思路是n在n-1序列里来回穿插，n-1序列每变化一次，n就来回穿插一个回合，其实就是上面从底向上生成排列算法的实现
+## leetcode567 暴力递归算法（任意两两互换，包括自己）
+```cpp
+vector<string> res;
+vector<int> bruteforce(int start,string& s){
+    if(start==s.size()) res.push_back(s);
+    for(int i=start;i<s.size();i++){
+        swap(s,start,i);//swap函数在这里用的是引用
+        brutefore(start+1,s);
+        swap(s,start,i);
+    }
+}
+```
+## 印度字典序生成算法
+# 生成子集
+## 自底至上生成子集
+## 引入位串（如何生成挤压序）挤压序需要将i位置的位串表达的a对应元素置为n-i+1
+## 二进制反射格雷码
+格雷码实现
+
+vector<string> Gray(int n){
+    vector<string> L1,L2,L;
+    if(n==1) L={'0','1'};
+    else{
+        L1=Gray(n-1);
+        //生成倒序L2,并加1
+        for(auto ll:L1){
+            string temp='1';
+            for(int j=ll.size()-1;j>=0;j--){
+            temp+=ll[j];}
+            L2.push_back(temp);
+        }
+        //L1自己前面加0
+        for(auto& ll:L1){
+            ll='0'+ll;
+        }
+        L.insert(L1.begin(),L1.end(),L2.begin(),L2.end());
+        return L;
+    }
+ ```
