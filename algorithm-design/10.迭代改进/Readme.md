@@ -52,3 +52,4 @@ while(Q!=empty()){
 }
 return M;
 ```
+## 稳定婚姻问题
