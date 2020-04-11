@@ -39,6 +39,9 @@ while(Q!=empty()){
               v=v_pre标记的点；
               M.push_back((v,v_pre));
           }
+          抹去所有顶点的标记；
+          用目前的所有自由顶点初始化Q;
+       }
     else{
         v_next=v的匹配点;
         v_next标记为v;
