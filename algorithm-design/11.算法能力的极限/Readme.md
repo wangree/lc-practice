@@ -27,4 +27,5 @@
 * 整数线性规划问题
 
 不确定算法求解的判定问题为NP类问题；
-[np,p,npc的概念和关系](https://www.cnblogs.com/alantu2018/p/8464339.html)讲的比书上更好
+[np,p,npc,np-hard的概念和关系](https://www.cnblogs.com/alantu2018/p/8464339.html)讲的比书上更好
+大体上说，p是多项式时间内可求解，np是多项式时间内可验证，所以p一定属于np,npc是所有np问题可以约化（复杂度提高）的问题，np-hard是无法求解的判定问题
