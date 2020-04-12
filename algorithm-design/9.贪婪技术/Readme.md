@@ -2,16 +2,28 @@
 # Prime算法
 生成最小生成树的算法
 ```cpp
-V,E;//该图的输入,该图务必是连通图，V是个优先队列，其中元素node按照距离排列,一开始node.distance= $+\infty$
-V_tree[0]=v; //任意图中点初始化点集V
-V_remained=V.erase(v);
+V,E;//该图的输入,该图务必是连通图，V是个优先队列，其中元素node按照node.distance排列,一开始node.distance= INT_MAX,node.prev= null;
+v=V.front();//任意一点作为初始顶点
+V.pop();
+V_remained=V;
 E_tree; //表示prim树的边集E_tree为空
-for(int i=0;i<V.size()-1;i++)//每次选出一个顶点{
-    
+for(int i=0;i<V.size()-1;i++)//每次选出一个除初始顶点外的顶点{
+    for (auto v_remained:V_remained){
+        if(E[v][v_remained]<v_remained_distance){
+            v_remained.distance=E[v][v_remained];//V_remained会自动排序
+            v_remianed.prev=v;
+        }
+        v=V_remained.front();
+        V_remained.pop();
+        E_tree.push_back((v.prev,v));
+    }
 }
+return E_tree;
 ```
 # Kruskal算法
+```cpp
 
+```
 ## 由此引出的不相交子集和并查问题
 子集的代表很重要 find(x)是在找代表 而合并的主要耗时也是在更新代表上
 # Dijkstra算法
