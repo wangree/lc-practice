@@ -2,7 +2,7 @@
 # Prime算法
 生成最小生成树的算法
 ```cpp
-V,E;//该图的输入,该图务必是连通图，V是个优先队列，其中元素node按照距离排列,一开始node.distance=$+\infty$
+V,E;//该图的输入,该图务必是连通图，V是个优先队列，其中元素node按照距离排列,一开始node.distance= $+\infty$
 V_tree[0]=v; //任意图中点初始化点集V
 V_remained=V.erase(v);
 E_tree; //表示prim树的边集E_tree为空
