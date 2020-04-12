@@ -3,19 +3,21 @@ prime和kruskal完整实现参考https://blog.csdn.net/wr132/article/details/433
 # Prime算法
 生成最小生成树的算法
 ```cpp
-V,E;//该图的输入,该图务必是连通图，V是个优先队列，其中元素node按照node.distance排列,一开始node.distance= INT_MAX,node.prev= null;
+V,E;//该图的输入,该图务必是连通图
 v=V.front();//任意一点作为初始顶点
 V.pop();
-V_remained=V;
+V_remained={V};//优先队列，其中元素node按照node.distance排列,一开始node.distance= INT_MAX,node.prev= null;
+Vt;//剩余元素集合
 E_tree; //表示prim树的边集E_tree为空
 for(int i=0;i<V.size()-1;i++)//每次选出一个除初始顶点外的顶点{
-    for (auto v_remained:V_remained){//这步操作时间复杂度为O(|V|),如果换成邻接链表，只需要遍历v相关的链表的成员，更新在remain中的标记即可，时间复杂度为O(|E|))
+    for (auto v_remained:Vt){//这步操作时间复杂度为O(|V|),如果换成邻接链表，只需要遍历v相关的链表的成员，更新在remain中的标记即可，时间复杂度为O(|E|))
         if(E[v][v_remained]<v_remained_distance){
             v_remained.distance=E[v][v_remained];//V_remained会自动排序
             v_remianed.prev=v;
         }
         v=V_remained.front();
         V_remained.pop();
+        Vt.erase(v);
         E_tree.push_back((v.prev,v));
     }
 }
