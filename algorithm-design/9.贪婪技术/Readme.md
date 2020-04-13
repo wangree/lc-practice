@@ -42,7 +42,7 @@ return E_tree;
 ```
 引入并查集进行优化
 ```cpp
-V,E;//该图的输入,该图务必是连通图，V是个优先队列，其中元素node按照node.distance排列,一开始node.distance= INT_MAX,node.prev= null;
+V,E;//该图的输入,该图务必是连通图
 把E中的边按照长度进行排序；
 G_tree={V_tree,E_tree}; //表示prim树的边集E_tree为空,这里的E_tree为孤立的各点，
 k=0；
@@ -61,9 +61,34 @@ while(valid_edge_num<V.size()-1)//每次选出一个除初始顶点外的顶点{
 }
 return E_tree;
 ```
+以上的实现较为初始，实际实现可以说完全不是这样，用一个数组set就可以完成并查问题，而返回的树另选一个vecotr记录
+```cpp
+V,E;//该图的输入,该图务必是连通图，E是边的vector
+把E中的边按照长度进行排序； 
+k=0；
+set[V.size()];
+for(int i=0;i<V.size();i++){
+    set[i]=i;
+}//set里存的是根的位置，即点的下标
+while(valid_edge_num<V.size()-1)//每次选出一个除初始顶点外的顶点{
+    k=k+1;
+    v=E[k].first;
+    u=E[k].second;    
+    if(set[v]!=set[u]) {
+        for(auto vv:V){
+           if(set[vv]==set[u]) set[vv]=set[u];
+        }
+        set[v]=set[u];//合并操作
+        E_tree.push_back(E[k]);
+        valid_edge++;
+    }//这就省去了查找是否形成回路的操作
+}
+return E_tree;
+```
 如果实现快速并查则效率主要取决于排序
 ## 由此引出的不相交子集和并查问题
 子集的代表很重要 find(x)是在找代表，事实上并不存在树，而是会维护x的相关链接，从而利用链表形成树， 而合并的主要耗时也是在更新代表上
+一种并查集已经在上面实现，查找快，直接set[i],但是合并要慢；另外一种链表型合并很快，但是查找慢
 # Dijkstra算法
 和prim算法有很大的相似性
 其实其思想有点暴力。。贪婪的思想都很暴力？
