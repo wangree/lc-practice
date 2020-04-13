@@ -52,7 +52,7 @@ while(valid_edge_num<V.size()-1)//每次选出一个除初始顶点外的顶点{
     u=E[k].second;
     tree_v=find(G_tree,v);//实际的实现应该是find((u,v)),
 并不存在G_tree这个东西只有链表，找到了则不做任何事没找到再find(u) find(v)
-当然这只是一个思路
+当然这只是一个思路；也可已只记住点然后标记另一端的点
     tree_u=find(G_tree,u);
     if(tree_v!=tree_u) {
     union(tree_v,tree_u,(v,u),G_tree);
