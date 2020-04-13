@@ -1,5 +1,5 @@
 贪婪的思想实现起来可能很简单，但很多问题用贪婪不一定是对的，有些对的问题需要用数学归纳法证明
-prime和kruskal完整实现参考https://blog.csdn.net/wr132/article/details/43373991（里面的邻接链表用了循环数组代替链表实现）
+prime和kruskal完整实现参考https://blog.csdn.net/wr132/article/details/43373991 （里面的邻接链表用了循环数组代替链表实现）
 # Prime算法
 生成最小生成树的算法
 ```cpp
