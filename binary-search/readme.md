@@ -15,6 +15,7 @@ public:
 ```
 ###二分法
 ####二分法写法1
+标准形式
 ```cpp
 class Solution {
 public:
