@@ -22,3 +22,5 @@ int gcd(int a,int b,int* x,int* y){
     return res;    
 }
 ```
+### 丢番图方程
+丢番图方程只需要将扩展的欧几里德得到的两个系数再乘以c/gcd(a,b)即可
