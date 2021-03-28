@@ -106,7 +106,7 @@ for(auto vv:V){
 }
 Vt=V;//
 for (int i=0;i<V.size()-1;i++){
-    u=Q.front();
+    u=Q.front();  //u是优先级最小的元素
     Q.pop();
     vt.erase(u);
     for (auto vv:Vt){
