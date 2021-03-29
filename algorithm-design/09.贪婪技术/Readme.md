@@ -110,10 +110,11 @@ for (int i=0;i<V.size()-1;i++){
     Q.pop();
     vt.erase(u);
     for (auto vv:Vt){
-        if(u.distance+E[vv][u]<vv.distance){
-            vv.distance=u.distance+E[vv][u];
-            vv.prev=u;
-            update(Q);
+        if (E[vv][u]<INT_MAX){
+            if (u.distance+E[vv][u]<vv.distance){
+                vv.distance=u.distance+E[vv][u];
+                vv.prev=u;
+                update(Q);
         }
     
 }
