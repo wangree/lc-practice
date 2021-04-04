@@ -111,7 +111,7 @@ for (int i=0;i<V.size()-1;i++){
     vt.erase(u);
     for (auto vv:Vt){
         if (E[vv][u]<INT_MAX){
-            if (u.distance+E[vv][u]<vv.distance){
+            if (u.distance+E[vv][u]<vv.distance){ //这句就是中转点更新，路径更优的意思，也是该算法的精髓
                 vv.distance=u.distance+E[vv][u];
                 vv.prev=u;
                 update(Q);
