@@ -56,3 +56,87 @@ N场比赛,A队赢得比赛还有i场，b队还是j场才能赢得比赛，求a�
 ## 8.3
 ### 最优二叉树
 二叉树个数 卡特兰数的推导https://zhuanlan.zhihu.com/p/38607233
+```cpp
+//基本递推公式是C(i,j)=sum(pi,pj)+min(c(i,k-1)+c(k+1,j)),k介于i，j之间，初始条件是c(j+1,j)=0,c(j,j)=p[j]
+#include <iostream>
+#include <vector>
+#include "float.h"
+#include<iomanip>
+double C[100][100];
+double p[100];
+double sump[100];
+int N;
+int R[100][100];
+using namespace std;
+void input() {
+    cin >> N;
+    for (int i=0; i< N;i++) {
+        cin >> p[i];
+    }
+
+}
+void init(double arrayTwo[][100]) {
+    for (int i=0; i< N;i++) {
+        sump[i+1] = sump[i]+p[i];
+    }
+    for (int i = 0; i < N; i++)
+    {
+        arrayTwo[i][i] = p[i];
+        arrayTwo[i+1][i] = 0;
+    }
+    for (int i = 0; i < N; i++)
+    {
+        R[i][i] = i;
+    }    
+}
+
+void CalC(double arrayTwo[][100]) {
+    for (int diag = 1; diag < N; diag++) {
+        for (int i = 0; i < N-diag; i++)
+        {
+            int j = i+diag;
+            arrayTwo[i][j] = DBL_MAX;
+            for (int k = i; k <=j ; k++)
+            {
+              
+                double p =  (k-1 <0)? 0 :arrayTwo[i][k-1];
+                double q = arrayTwo[k+1][j];
+                double temp = p+q+sump[j+1]-sump[i];
+                if ((temp < arrayTwo[i][j])) {
+                    arrayTwo[i][j] =  temp;
+                    R[i][j] = k;  
+                }
+            }
+            
+        }   
+    }    
+}
+
+
+void showresult() {
+    cout<<setiosflags(ios::fixed)<<setprecision(6)<<setiosflags(ios::left);
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            cout << C[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << "=========================" << endl;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            cout << R[i][j] << " ";
+        }
+        cout << endl;
+    }
+} 
+int main() {
+    input();
+    init(C);
+    CalC(C);
+    showresult();
+}
+```
