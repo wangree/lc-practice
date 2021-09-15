@@ -12,6 +12,9 @@
 ### 习题3.2
 ### 两个仪器 测试使其坏的最高楼层 一个坏了以后可以用另一个 最佳方法是：
 √n查找法 以√n为步长进行测试 具体到某步中 再以1为单位进行测试 效率不会低于2√n 无法使用二分 因为只有两个仪器 二分只能查找两次
+### 为什么从右向左字符串匹配更好
+Comparing pairs of the pattern and text characters righ-to-left can allow
+farther pattern shifts after a mismatch
 ## 3.3最近对和凸包问题的蛮力算法
 ### 最近对问题
 典型的蛮力法解决的问题，蛮力法也有技巧，比如不要重复计数等等
