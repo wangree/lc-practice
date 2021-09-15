@@ -15,6 +15,9 @@
 ### 为什么从右向左字符串匹配更好
 Comparing pairs of the pattern and text characters righ-to-left can allow
 farther pattern shifts after a mismatch
+### 蛮力算法查找以a开头 以b结尾的子串线性改进版
+存储a的个数A 和 要求的子串数目sub,初始值均为0,从左到右碰到一个a则为增加a的数目，碰到一个b，则sub加当前A，最后返回sub
+
 ## 3.3最近对和凸包问题的蛮力算法
 ### 最近对问题
 典型的蛮力法解决的问题，蛮力法也有技巧，比如不要重复计数等等
