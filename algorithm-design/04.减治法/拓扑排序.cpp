@@ -43,6 +43,7 @@ int main(){
     int node=0;
     int count=0;
     while(!source.empty()) {
+        //ret为1时，为多源，顺序不定
         if (source.size() > 1) ret = 1;
         node = source.top();
         v.push_back(node);
@@ -57,6 +58,7 @@ int main(){
             }
         }
     }
+    // count<N说明，有一些没有进入遍历，进入遍历的条件是成为源，不能成为源说明有环
     if(count<N){
         ret=2;
         cout<<"conflict";
