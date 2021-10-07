@@ -25,5 +25,5 @@ $$ exp=\sum_{i=1}^{n-1} \frac{i+2}{i} \approx \frac {n^2}{4} $$
 ![image](https://user-images.githubusercontent.com/46526327/136352803-bedf76ff-1b69-4694-8191-a4972c81518e.png)  
 一只蜘蛛位于网的底端(S)，而一只苍蝇位于网的顶端(F)。沿着箭头方向在线上移动，蜘蛛有多少不同的路径到达苍蝇处？  
 从S出发按照拓扑排序的顺序依次遍历节点，对每个节点计算从S出发到达它存在多少路径，计算方法是对所有前驱节点的路径数求和。计算得到到达F节点的路径数是141。  
-![image](https://user-images.githubusercontent.com/46526327/136354993-3cb9f0af-57ed-4716-9e2e-a4346a0e1f10.png)
-
+![image](https://user-images.githubusercontent.com/46526327/136354993-3cb9f0af-57ed-4716-9e2e-a4346a0e1f10.png)  
+可见在最终的结果这里，是一个以bfs方式遍历的形式进行的拓扑排序，这种排序能够计算路径数目
