@@ -24,7 +24,7 @@ int degree[50];
 int N;
 int M;
 stack<int> source;
-vector<int> v;
+vector<int> v; //其实这里是用stack还是用queue并无所谓，同层之间对于拓扑排序之间不存在顺序
 int ret;
 int main(){
     cin>>N;
