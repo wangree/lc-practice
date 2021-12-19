@@ -86,3 +86,36 @@ B树的阶数指它最多可拥有的子树数量，因为是最多，所以一�
 插入首先需要查找，如果遇到满的节点(M-1)先分裂再向下继续找,找到外节点后直接插入
 和原来的B树，二三树向上递归分裂的思路不一样
 ### B树的add和contain的实现
+```cpp
+bool contain(Page h,Key key) {
+    if (h.isExternal()) {
+        return h.contain(key); 
+    }
+    return contain(h.next(key), key)
+}
+//内部节点的加入
+add(Page h, Key key) {
+    if (h.isExternal()) {
+        return h.add(key);//外部节点的插入     
+    }
+    Page next = h.next(key); 
+    add(next, key);
+    if (h.IsFull()){ //一般本层是不需要加入的，除非下层满了
+        h.add(next.Split()); //下层如果满了只会多分裂出一个节点而不是两个，本层加入该节点即可
+    }
+    next.close();
+}
+
+//根节点的插入
+add(Key key)
+{
+    //root是私有变量
+    add(root, key);
+    if (root.IsFull()) {
+        Page newPage = new Page(False);//Page的构造参数为是否在底部）
+        newPage.add(root);
+        newPage.add(root.Split());
+        root = newPage;
+    }
+}
+
