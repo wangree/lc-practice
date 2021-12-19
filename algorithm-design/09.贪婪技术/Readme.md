@@ -1,14 +1,14 @@
 贪婪很可能不是全局最优的，但有些时候他的部分解可以扩展到全局最优，这个需要数学归纳法，或者在每一步证明贪婪算法不比其他算法的选择差，或者基于算法的最终结果而不是过程证明它结果已经最优
 prime和kruskal完整实现参考https://blog.csdn.net/wr132/article/details/43373991 （里面的邻接链表用了循环数组代替链表实现）
 # Prime算法
-生成最小生成树的算法;最小生成树是一个图上的边权重总和最小的树（包含所有的点）
+生成最小生成树的算法;最小生成树是一个图上的边权重总和最小的树（包含所有的点）,算法实现几乎就是贪婪的表面意思
 ```cpp
 vector<node> V;
 int E[100][100];//该图的输入,该图务必是连通图
 v=V.front();//任意一点作为初始顶点
 V.pop();
 priority_queue< node, vector<node>, less<node> > V_remained(V.begin(),V.end()); //优先队列，其中元素node按照node.weight排列,一开始node.weight= INT_MAX,node.prev= null;剩余元素集合，node的<需要重载
-vector<pair<node,node>> E_tree; //表示prim树的边集E_tree为空
+vector<pair<node,node>> E_tree; //表示prim树的边集，即为最后的结果
 for(int i=0;i<V.size()-1;i++)//每次选出一个除初始顶点外的顶点{
     for (auto v_remained:V_remained){//这步操作时间复杂度为O(|V|),如果换成邻接链表，只需要遍历v相关的链表的成员，更新在remain中的标记即可，时间复杂度为O(|E|))
         if(E[v][v_remained]<v_remained.weight){
@@ -21,9 +21,10 @@ for(int i=0;i<V.size()-1;i++)//每次选出一个除初始顶点外的顶点{
     V_remained.pop();
     E_tree.emplace_back(v.prev,v);
 }
-return E_tree;
 ```
-时间效率属于O(|E|log|V|),log|V|是堆内部删除及更新操作
+时间效率属于O(|E|log|V|),log|V|是堆内部（优先队列）删除及更新操作
+## prim算法正确性的证明
+
 # Kruskal算法
 最小生成树的另一个算法
 ```cpp
