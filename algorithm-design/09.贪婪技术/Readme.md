@@ -1,25 +1,25 @@
 贪婪很可能不是全局最优的，但有些时候他的部分解可以扩展到全局最优，这个需要数学归纳法，或者在每一步证明贪婪算法不比其他算法的选择差，或者基于算法的最终结果而不是过程证明它结果已经最优
 prime和kruskal完整实现参考https://blog.csdn.net/wr132/article/details/43373991 （里面的邻接链表用了循环数组代替链表实现）
 # Prime算法
-生成最小生成树的算法
+生成最小生成树的算法;最小生成树是一个图上的边权重总和最小的树（包含所有的点）
 ```cpp
-V,E;//该图的输入,该图务必是连通图
+vector<node> V;
+int E[100][100];//该图的输入,该图务必是连通图
 v=V.front();//任意一点作为初始顶点
 V.pop();
-V_remained={V};//优先队列，其中元素node按照node.distance排列,一开始node.distance= INT_MAX,node.prev= null;
-Vt;//剩余元素集合
-E_tree; //表示prim树的边集E_tree为空
+priority_queue< node, vector<node>, less<node> > V_remained(V.begin(),V.end()); //优先队列，其中元素node按照node.weight排列,一开始node.weight= INT_MAX,node.prev= null;剩余元素集合
+vector<pair<node,node>> E_tree; //表示prim树的边集E_tree为空
 for(int i=0;i<V.size()-1;i++)//每次选出一个除初始顶点外的顶点{
-    for (auto v_remained:Vt){//这步操作时间复杂度为O(|V|),如果换成邻接链表，只需要遍历v相关的链表的成员，更新在remain中的标记即可，时间复杂度为O(|E|))
-        if(E[v][v_remained]<v_remained_distance){
-            v_remained.distance=E[v][v_remained];//V_remained会自动排序
+    for (auto v_remained:V_remained){//这步操作时间复杂度为O(|V|),如果换成邻接链表，只需要遍历v相关的链表的成员，更新在remain中的标记即可，时间复杂度为O(|E|))
+        if(E[v][v_remained]<v_remained.weight){
+            //更新权重
+            v_remained.weight=E[v][v_remained];//V_remained会自动排序
             v_remianed.prev=v;
         }
-        v=V_remained.front();
-        V_remained.pop();
-        Vt.erase(v);
-        E_tree.push_back((v.prev,v));
     }
+    v=V_remained.front();
+    V_remained.pop();
+    E_tree.emplace_back(v.prev,v);
 }
 return E_tree;
 ```
