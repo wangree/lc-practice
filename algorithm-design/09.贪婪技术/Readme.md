@@ -19,18 +19,21 @@ vector<node> V;
 int E[100][100];//该图的输入,该图务必是连通图
 v=V.front();//任意一点作为初始顶点
 V.pop();
-priority_queue< node, vector<node>, less<node> > V_remained(V.begin(),V.end()); //优先队列，其中元素node按照node.weight排列,一开始node.weight= INT_MAX,node.prev= null;剩余元素集合，node的<需要重载
+priority_queue< node, vector<node>, less<node> > V_remained(V.begin(),V.end()); //优先队列，其中元素node按照node.weight排列,一开始node.weight= INT_MAX,node.prev= null;剩余元素集合，node的<需要重载，每个node的prev代表它离树最近的点
 vector<pair<node,node>> E_tree; //表示prim树的边集，即为最后的结果
-for(int i=0;i<V.size()-1;i++)//每次选出一个除初始顶点外的顶点{
-    for (auto v_remained:V_remained){//这步操作时间复杂度为O(|V|),如果换成邻接链表，只需要遍历v相关的链表的成员，更新在remain中的标记即可，时间复杂度为O(|E|))
-        if(E[v][v_remained]<v_remained.weight){
+for(int i=0;i<V.size()-1;i++)//每次选出一个顶点加入最小生成树，∣V∣-1即可走完，不需要检查V_div是否为空{
+    for (auto v_remained:E[v]){//这步操作时间复杂度为O(|V|),如果换成邻接链表，只需要遍历v相关的链表的成员，更新在remain中的标记即可，时间复杂度为O(|E|))
+    if(v.isMarked()) continue;//排除已经在树中的点，否则V_div最小边可能不更新  
+    if(E[v][v_remained.id]<v_remained.weight){
             //更新权重
-            v_remained.weight=E[v][v_remained];//V_remained会自动排序
+            v_remained.weight=E[v][v_remained.id];//V_remained会自动排序
             v_remianed.prev=v;
+            V_div.push_back(v_remained);
         }
     }
-    v=V_remained.front();
-    V_remained.pop();
+    v=V_div.front();
+    V_div.pop();
+    v.mark();
     E_tree.emplace_back(v.prev,v);
 }
 ```
