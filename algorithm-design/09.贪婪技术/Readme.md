@@ -64,6 +64,7 @@ return E_tree;
 ```
 引入并查集进行优化
 ```cpp
+//quick-union算法
 V,E;//该图的输入,该图务必是连通图
 把E中的边按照长度进行排序；
 G_tree={V_tree,E_tree}; //表示prim树的边集E_tree为空,这里的E_tree为孤立的各点，
@@ -85,6 +86,7 @@ return E_tree;
 ```
 以上的实现较为初始，实际实现可以说完全不是这样，用一个数组set就可以完成并查问题，而返回的树另选一个vecotr记录
 ```cpp
+//quick-find算法
 V,E;//该图的输入,该图务必是连通图，E是边的vector
 E_tree;//输出
 把E中的边按照长度进行排序； 
