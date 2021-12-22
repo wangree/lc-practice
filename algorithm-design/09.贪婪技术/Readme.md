@@ -112,8 +112,9 @@ while(valid_edge_num<V.size()-1)//每次选出一个除初始顶点外的顶点{
 return E_tree;
 ```
 ## 并查集
-首先所有算法都对所有点
-Quickfind
+首先所有算法都把每个点都作为自己的根节点，有N个集
+Quickfind 每个节点都指向根节点，find非常快，但union的时候需要遍历所有节点
+压缩路径的Quick Union，所有点都链接到根节点，在union时发现根节点不同，只需要将自链接的点链接到另一个的根节点上去就可以
 
 
 ### 加权quick-union
