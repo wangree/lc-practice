@@ -118,7 +118,7 @@ Quickfind 每个节点都指向根节点，find非常快，但union的时候需�
 ### 加权quick-union
 它比一般的Quick-union好在小树往大树上添加，小树深度加1大树不动，整体深度不变，反过来大树深度加1整体加1,可以证明该算法生成的深度不超过log_2 K,K为节点总数
 ### 加权quick union的最差情况
-！[](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20211222_142657_com.flyersoft.moonreaderp.png)
+![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20211222_142657_com.flyersoft.moonreaderp.png)
 
 # Dijkstra算法
 和prim算法有很大的相似性
