@@ -113,12 +113,13 @@ return E_tree;
 ```
 ## 并查集
 首先所有算法都把每个点都作为自己的根节点，有N个集
-Quickfind 每个节点都指向根节点，find非常快，但union的时候需要遍历所有节点
-压缩路径的Quick Union，所有点都链接到根节点，在union时发现根节点不同，只需要将自链接的点链接到另一个的根节点上去就可以
-
+Quickfind 每个节点都指向根节点，find非常快，但union的时候需要遍历所有节
 
 ### 加权quick-union
 它比一般的Quick-union好在小树往大树上添加，小树深度加1大树不动，整体深度不变，反过来大树深度加1整体加1,可以证明该算法生成的深度不超过log_2 K,K为节点总数
+### 加权quick union的最差情况
+！[](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20211222_142657_com.flyersoft.moonreaderp.png)
+
 # Dijkstra算法
 和prim算法有很大的相似性
 单起点最短路径,起点s到所有其他点的最短路径及距离
