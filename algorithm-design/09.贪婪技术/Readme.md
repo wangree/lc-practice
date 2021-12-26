@@ -74,15 +74,17 @@ b.砝码可以放在两边
 证明Kruskal 算法能够计算任意加权连通图的最小生成树。
 如果下一条将被加入最小生成树中的边不会和已有的黑色边构成环，那么它就跨越了由所有和树顶点相邻的顶点组成的集合以及它们的补集所构成的一个切分。因为加入的这条边不会形成环、它是目前已知的唯一一条横切边且是按照权重顺序选择的边，所以它必然是权重最小的横切边。因此，该算法能够连续选择权重最小的横切边，和贪心算法一致。
 ```cpp
-V,E;//该图的输入,该图务必是连通图，V是个优先队列，其中元素node按照node.distance排列,一开始node.distance= INT_MAX,node.prev= null;
+V,E;//该图的输入,该图务必是连通图，E是个优先队列，其中元素E[i]按照weight排列
 把E中的边按照长度进行排序；
 E_tree; //表示prim树的边集E_tree为空
 k=0；
-while(valid_edge_num<V.size()-1)//每次选出一个除初始顶点外的顶点{
-    k=k+1;
-    if(E_tree与E[k]无回路）{//并查集可以省去该检查
-        valid_edge_num++;
+auto uF = UF(V); //对每一个点都构造并查集对象
+while(!E.empty() && E_tree.size()< V.size()-1)//每次选出一个除初始顶点外的顶点{
+    auto e = E.pop();
+    v,w为e的两个端点（任意顺序）
+    if(!uF.connected(v,w)）{//已经相连代表已经在树中，要跳过
         E_tree.push_back(E[k]);
+        uF.union(v, w);
     }
 }
 return E_tree;
