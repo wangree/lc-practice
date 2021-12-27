@@ -154,6 +154,10 @@ Quickfind 每个节点都指向根节点，find非常快，但union的时候需�
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20211222_142657_com.flyersoft.moonreaderp.png)
 ### 压缩路权的quick union算法
 对find方法进行修改，把find循环经过的每个点最后都链接到根上；但是这对于上面的情况可能无效，所以在每次union后，对深度大于1的点要进行find(但这里也引入了很大的复杂度，所以加权quick union其实已经足够好);quick-find也可以使用路径压缩
+### 斯坦纳树
+斯坦纳树：平面原来有若干点，现在可以加点使得这个点与原来的点之间形成的树的权重总和最小，是np难问题。  
+4个点时的解法：
+！[](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20211227_184814_cn.wps.moffice_eng.png)
 # Dijkstra算法
 和prim算法有很大的相似性
 单起点最短路径,起点s到所有其他点的最短路径及距离
