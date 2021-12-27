@@ -143,14 +143,16 @@ return E_tree;
 首先所有算法都把每个点都作为自己的根节点，有N个集，然后再进行find,union等操作直到把所有点进行了合适的归类
 ### quick-find
 Quickfind 每个节点都指向根节点，find非常快，但union的时候需要遍历所有节点;每次find只需要访问数组一次，而uinion操作会调用两次find并检查所有N个元素并改变需要改变的元素（每次改变最多需要两次访问两次，读一次，改一次），因而访问数组的次数在N+3和2N+1之间
+### quick-find的改进
+在union时把小的连通分量向大的上面添加，尽管不能显著提升一次union的效率，但是在一系列操作后，union总效率将是nlogn
 ### quick-union
 每个节点不必指向根节点而是指向另一个同属于一个分量的节点，直到指向根节点,union时只需要将一个节点的根节点指向另一个节点的根节点；该算法中find方法访问次数为节点深度加1，而union需要两次find;quick-union最坏的情况是长链的根节点一直向一个单节点上uinion
 ### 加权quick-union
-它比一般的Quick-union好在小树往大树上添加，小树深度加1大树不动，整体深度不变，反过来大树深度加1整体加1,可以证明该算法生成的深度不超过log_2 K,K为节点总数, 这里需要用一个数组维护每个点的深度
+它比一般的Quick-union好在小树往大树上添加，小树深度加1大树不动，整体深度不变，反过来大树深度加1整体加1,可以证明该算法生成的深度不超过log_2 K,K为节点总数, 这里需要用一个数组维护每个点的深度;这时候的查找总效率是logn
 ### 加权quick union的最差情况
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20211222_142657_com.flyersoft.moonreaderp.png)
 ### 压缩路权的quick union算法
-对find方法进行修改，把find循环经过的每个点最后都链接到根上；但是这对于上面的情况可能无效，所以在每次union后，对深度大于1的点要进行find(但这里也引入了很大的复杂度，所以加权quick union其实已经足够好)
+对find方法进行修改，把find循环经过的每个点最后都链接到根上；但是这对于上面的情况可能无效，所以在每次union后，对深度大于1的点要进行find(但这里也引入了很大的复杂度，所以加权quick union其实已经足够好);quick-find也可以使用路径压缩
 # Dijkstra算法
 和prim算法有很大的相似性
 单起点最短路径,起点s到所有其他点的最短路径及距离
