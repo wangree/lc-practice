@@ -190,7 +190,8 @@ for (int i=0;i<V.size()-1;i++){
     
 }
  //类似算法有open close的区分 比如A_* open指的是待更新 close表示已经找到最短距离 已经出队列 这里我们并没有采用类似思路 中途入队
-```有向无环图的迪杰斯特拉算法
+```
+## 有向无环图的迪杰斯特拉算法
 从起点开始按照拓扑排序的顺序,每个点更新其相邻点距离起点的距离，这个算法是线性的如果使用拓扑排序的话
 ### 该算法的负权重反例和效率
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20211228_132904_cn.wps.moffice_eng.jpg)
