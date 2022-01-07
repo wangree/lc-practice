@@ -41,7 +41,11 @@ iii  网络中已经不存在任何增广路径
 在给定的网络中添加两个顶点，分别作为新网络的源和汇。 将新源连接到每个原始源，将每个原始汇通过一些大容量为M 的边连接到新汇（取M大于或等于原始网络中汇出每个原始源的边的容量之和就足够了）
 ## 中间点有流量约束时的处理
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/10.%E8%BF%AD%E4%BB%A3%E6%94%B9%E8%BF%9B/Screenshot_20220106_185247_cn.wps.moffice_eng.png)
-# 二分图的最大匹配
+## 流量网络的巧妙应用
+有P个家庭，q张桌子，要求每个家庭的成员不能坐在同一张桌子上，每个家庭成员数目为a_i,每个桌子容量为b_i,可以用最大流量算法求解
+![]❨https://github.com/wangree/lc-practice/blob/master/algorithm-design/10.%E8%BF%AD%E4%BB%A3%E6%94%B9%E8%BF%9B/Screenshot_20220107_094002_cn.wps.moffice_eng.png)
+#  二分图的最大匹配
+
 ## 一些匹配的概念
 * 增益路径
 * 不饱和点（自由顶点）
