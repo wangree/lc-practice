@@ -43,7 +43,7 @@ iii  网络中已经不存在任何增广路径
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/10.%E8%BF%AD%E4%BB%A3%E6%94%B9%E8%BF%9B/Screenshot_20220106_185247_cn.wps.moffice_eng.png)
 ## 流量网络的巧妙应用
 有P个家庭，q张桌子，要求每个家庭的成员不能坐在同一张桌子上，每个家庭成员数目为a_i,每个桌子容量为b_i,可以用最大流量算法求解
-![]❨https://github.com/wangree/lc-practice/blob/master/algorithm-design/10.%E8%BF%AD%E4%BB%A3%E6%94%B9%E8%BF%9B/Screenshot_20220107_094002_cn.wps.moffice_eng.png)
+![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/10.%E8%BF%AD%E4%BB%A3%E6%94%B9%E8%BF%9B/Screenshot_20220107_094002_cn.wps.moffice_eng.png)
 #  二分图的最大匹配
 
 ## 一些匹配的概念
