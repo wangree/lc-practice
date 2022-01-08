@@ -194,7 +194,7 @@ for (int i=0;i<V.size()-1;i++){
 ## 有向无环图的迪杰斯特拉算法
 从起点开始按照拓扑排序的顺序,每个点更新其相邻点距离起点的距离，这个算法是线性的如果使用拓扑排序的话;该图的最长路径问题是将更新条件反过来即可
 ## 使用有向加权无环图解决cpu并行调度问题(不限线程数)
-![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20220108_114540_com.flyersoft.moonreaderp.jpg)
+![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20220108_114548_com.flyersoft.moonreaderp.jpg)
 ### 该算法的负权重反例和效率
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20211228_132904_cn.wps.moffice_eng.jpg)
 该算法如果使用矩阵表示图，优先用无序数组来实现优先队列，则效率为O(|V|^2),如果使用邻接矩阵，使用最小堆作为优先队列则效率为ElogV
