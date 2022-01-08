@@ -197,7 +197,8 @@ for (int i=0;i<V.size()-1;i++){
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20220108_114548_com.flyersoft.moonreaderp.jpg)
 最长路径意味着必须遵守拓扑顺序因而保证了串行的顺序
 ## cpu并行调度有最后期限限制时
-所谓最后期限限制指的是，任务a必须要在任务b开始d时间内开始，这时候需要给图中加一条由a指向b的负权重边，然后在求最长路径，这时候可能是有环的
+所谓最后期限限制指的是，任务a必须要在任务b开始d时间内开始，这时候需要给图中加一条由a指向b的负权重边，然后在求最长路径，这时候可能是有环的，如下图
+![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20220108_123502_com.flyersoft.moonreaderp.png)
 ### 该算法的负权重反例和效率
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/09.%E8%B4%AA%E5%A9%AA%E6%8A%80%E6%9C%AF/Screenshot_20211228_132904_cn.wps.moffice_eng.jpg)
 该算法如果使用矩阵表示图，优先用无序数组来实现优先队列，则效率为O(|V|^2),如果使用邻接矩阵，使用最小堆作为优先队列则效率为ElogV
