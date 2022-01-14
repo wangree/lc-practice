@@ -66,32 +66,35 @@ iii  网络中已经不存在任何增广路径
 * 一次匹配开始，从自由顶点出发的bfs将能够连接到的点匹配了一遍后，已经找遍了所有能够进行增益的路径，因为bfs不会有所遗漏，所以认为找不到增益路径了，所以就是最大匹配
 ### bfs寻找最大匹配算法(伪代码）
 ```cpp
-Q={自由顶点}
+//有两个匹配集合一个是V,一个是U
+Q={V中的自由顶点}
 M;//匹配
 while(Q!=empty()){
    v=Q.front();
    Q.pop();
    if(v属于V){
        for(vv:v的邻接点）{
-       if(vv已经匹配 && vv未标记）{
-          vv标记为v;
-          Q.push(vv);
+           //代表交替路径中不属于属于原匹配M的路径，是vv的一条新路径
+             if(vv已经匹配 && vv未标记）{
+               vv标记为v,代表前继是v;
+               Q.push(vv);
+             }
+             else if(vv是自由顶点）//进行增益{
+             M.push_back((v,vv));
+             while(v被标记）{
+                  v_pre=v的标记点；
+                  M.erase((v_pre，v));
+                  v=v_pre标记的点；
+                  M.push_back((v,v_pre));
+             }
+             抹去所有顶点的标记；
+             用目前的所有自由顶点初始化Q;
+             }
           }
-       else if(vv是自由顶点）//进行增益{
-          M.push_back((v,vv));
-          while(v被标记）{
-              v_pre=v的标记点；
-              M.erase((v_pre，v));
-              v=v_pre标记的点；
-              M.push_back((v,v_pre));
-          }
-          抹去所有顶点的标记；
-          用目前的所有自由顶点初始化Q;
-       }
-       }
-    }
-    else{
+    } else {
+        //能加入到Q中的点，一定是先前匹配的，要么是在这里加入的，要么是在代码第一个if中加入的
         v_next=v的匹配点;
+        //这代表交替路径中属于M的路径
         v_next标记为v;
         Q.push(v_next);
         }
