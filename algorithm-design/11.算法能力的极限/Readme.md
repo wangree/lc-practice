@@ -28,7 +28,7 @@
 
 不确定算法求解的判定问题为NP类问题；
 [np,p,npc,np-hard的概念和关系](https://www.cnblogs.com/alantu2018/p/8464339.html)讲的比书上更好
-大体上说，p是多项式时间内可求解，np是多项式时间内可验证，所以p一定属于np,npc是所有np问题可以约化（复杂度提高,更为一般化）的问题，np-hard是无法求解的判定问题和npc问题的并集，np-hard的定义是at least as hard as NP compelete problem
+大体上说，p是多项式时间内可求解，np是多项式时间内可验证，所以p一定属于np,npc是所有np问题可以约化（复杂度提高,更为一般化）的问题，np-hard是无法求解的判定问题和npc问题的并集，np-hard的定义是at least as hard as NP compelete problem；在无向图（边权重相等）中使用bfs查找简单最短路径是线性问题，但是查找最长路径却最差却是指数的（这里存疑，说法不够严格）
 
 # 数值算法的挑战
 阶段误差（数值算法本身的误差）；舍入误差和有效数字有关；溢出（如超大数相乘），下溢（如减去抵消）；不稳定性；要尽量通过化简等形式避免舍入误差
