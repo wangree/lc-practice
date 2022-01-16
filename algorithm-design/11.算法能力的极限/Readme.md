@@ -19,7 +19,8 @@
 \begin{aligned}
 x = a+b+c+ \\
 d+e+f+g
-\end{aligned} $$
+\end{aligned}
+\end{equation}$$
 
 ## 不确定算法和NP类问题
 也存在可以判定但难解的问题；但更多的是找不到多项式类型的算法的问题，书中列举有：
