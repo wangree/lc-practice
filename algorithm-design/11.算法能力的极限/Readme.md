@@ -32,6 +32,7 @@
 
 NP的全称是nonderterminism problem,意思是当一个算法面对若干个选项时，它有能力猜出正确的选择，就是不确定性的生成一些解然后再去在多项式时间内验证这些解是否成立，即可以用不确定多项式算法求解的问题
 [np,p,npc,np-hard的概念和关系](https://www.cnblogs.com/alantu2018/p/8464339.html)讲的比书上更好
+也可以参考：https://blog.csdn.net/qq_38228254/article/details/79506479
 大体上说，p是多项式时间内可求解，np是多项式时间内可验证，所以p一定属于np,npc是所有np问题可以约化（复杂度提高,更为一般化）的问题，np-hard是无法求解的判定问题和npc问题的并集，np-hard的定义是at least as hard as NP compelete problem；在无向图（边权重相等）中使用bfs查找简单最短路径是线性问题，但是查找最长路径却最差却是指数的（这里存疑，说法不够严格）
 
 # 数值算法的挑战
