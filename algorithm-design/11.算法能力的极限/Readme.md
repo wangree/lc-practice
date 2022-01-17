@@ -40,6 +40,8 @@ NP的全称是nonderterminism problem,意思是当一个算法面对若干个选
 ## npc问题和规约
 A能能归约为b,b的解则说明b问题复杂度更高。为了解决问题 A 最多需要解决多项式个问题 B 的实例，且问题归约最多只需多项式时间。在这种情况下，我们称 A 能够在多项式时间内归约 为 B
 所有np问题可以在多项式时间内归约为a,则称a为np完全问题
+## p,np,npc的关系
+![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/11.%E7%AE%97%E6%B3%95%E8%83%BD%E5%8A%9B%E7%9A%84%E6%9E%81%E9%99%90/Screenshot_20220117_093727_com.flyersoft.moonreaderp.jpg)
 # 数值算法的挑战
 阶段误差（数值算法本身的误差）；舍入误差和有效数字有关；溢出（如超大数相乘），下溢（如减去抵消）；不稳定性；要尽量通过化简等形式避免舍入误差
 捎带介绍了牛顿法计算平方根
