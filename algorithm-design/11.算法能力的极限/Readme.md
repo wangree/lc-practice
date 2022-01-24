@@ -115,6 +115,7 @@ A能能归约为b,b的解则说明b问题复杂度更高。为了解决问题 A 
 所有np问题可以在多项式时间内归约为a,则称a为np完全问题；既不属于p，也不属于npc的np问题也是存在的;如果一个npc问题可以规约为另一个问题，则这个问题也是一个npc问题
 ## p,np,npc的关系
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/11.%E7%AE%97%E6%B3%95%E8%83%BD%E5%8A%9B%E7%9A%84%E6%9E%81%E9%99%90/Screenshot_20220117_093727_com.flyersoft.moonreaderp.jpg)
+### 偶图和偶图检查算法
 # 数值算法的挑战
 阶段误差（数值算法本身的误差）；舍入误差和有效数字有关；溢出（如超大数相乘），下溢（如减去抵消）；不稳定性；要尽量通过化简等形式避免舍入误差
 捎带介绍了牛顿法计算平方根
