@@ -129,8 +129,10 @@ A能能归约为b,b的解则说明b问题复杂度更高。为了解决问题 A 
 2. V − v' 是 G 的独立集（独立集中的点不邻接）
 3. V − V' 是 G 的补集的一个团 （一个规模为k的团是包含k个订单的完全子图）
 ### p,NPC,np的可能关系
-![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/11.%E7%AE%97%E6%B3%95%E8%83%BD%E5%8A%9B%E7%9A%84%E6%9E%81%E9%99%90/Screenshot_20220125_091707_com.flyersoft.moonreaderp.png）
+![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/11.%E7%AE%97%E6%B3%95%E8%83%BD%E5%8A%9B%E7%9A%84%E6%9E%81%E9%99%90/Screenshot_20220125_091707_com.flyersoft.moonreaderp.png)
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/11.%E7%AE%97%E6%B3%95%E8%83%BD%E5%8A%9B%E7%9A%84%E6%9E%81%E9%99%90/Screenshot_20220125_091721_com.flyersoft.moonreaderp.png)
+### 哈密顿回路问题的应用和存在性判定
+比如有很多人互相之间不和，要把这些人安排在一张桌子上，相邻的不能不和，则我们可以画一张图，互相不和的人不相连，这时候的一个哈密顿回路就是一个正确的安排方式；哈密顿回路如果总的点数大于等于3，每个点的度大于n/2时一定存在。更一般的，如果图中每个不相邻点对的度之和大于等于n,则哈密顿回路存在
 # 数值算法的挑战
 阶段误差（数值算法本身的误差）；舍入误差和有效数字有关；溢出（如超大数相乘），下溢（如减去抵消）；不稳定性；要尽量通过化简等形式避免舍入误差
 捎带介绍了牛顿法计算平方根
