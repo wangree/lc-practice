@@ -130,7 +130,7 @@ A能能归约为b,b的解则说明b问题复杂度更高。为了解决问题 A 
 3. V − V' 是 G 的补集的一个团 （一个规模为k的团是包含k个订单的完全子图）
 ### p,NPC,np的可能关系
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/11.%E7%AE%97%E6%B3%95%E8%83%BD%E5%8A%9B%E7%9A%84%E6%9E%81%E9%99%90/Screenshot_20220125_091707_com.flyersoft.moonreaderp.png）
-![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/11.%E7%AE%97%E6%B3%95%E8%83%BD%E5%8A%9B%E7%9A%84%E6%9E%81%E9%99%90/Screenshot_20220125_091707_com.flyersoft.moonreaderp.png
+![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/11.%E7%AE%97%E6%B3%95%E8%83%BD%E5%8A%9B%E7%9A%84%E6%9E%81%E9%99%90/Screenshot_20220125_091721_com.flyersoft.moonreaderp.png)
 # 数值算法的挑战
 阶段误差（数值算法本身的误差）；舍入误差和有效数字有关；溢出（如超大数相乘），下溢（如减去抵消）；不稳定性；要尽量通过化简等形式避免舍入误差
 捎带介绍了牛顿法计算平方根
