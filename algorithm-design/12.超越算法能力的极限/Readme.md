@@ -32,7 +32,7 @@ c_0为1一般，c_i是随机选择的状态x_i-1对应的可能选择数。整�
 ```cpp
 A[100];
 Vis[100];
-void BackTrace(int* A, int i) 
+void BackTrace(int* A, int i ,into* Vis) 
 {
    if (i == n-1) {
       for (int k = 0; k < n; k++) {
@@ -42,10 +42,12 @@ void BackTrace(int* A, int i)
       return;
    }
    for (int k = 0; k < n; k++) {
-      if (A[i] == 0) {
+      if (Vis[k+1] == 0) {
           A[i] = k+1;
-          BackTrace(A, i+1);
+          Vis[k+1] = 1;
+          BackTrace(A, i+1,Vis);
           A[i] = 0; //这个算回溯这个名字的由来了
+          Vis[k+1] = 0;
       } 
 }
 ```
