@@ -30,7 +30,7 @@ void BackTrace(int* A, int i)
    }
    for (int k = 0; k < n; k++) {
       if (A[i] == 0) {
-          A[i] = k;
+          A[i] = k+1;
           BackTrace(A, i+1);
           A[i] = 0; //这个算回溯这个名字的由来了
       } 
