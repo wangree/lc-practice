@@ -31,6 +31,7 @@ c_0为1一般，c_i是随机选择的状态x_i-1对应的可能选择数。整�
 * 回溯法生成排列
 ```cpp
 A[100];
+Vis[100];
 void BackTrace(int* A, int i) 
 {
    if (i == n-1) {
