@@ -115,6 +115,7 @@ A能能归约为b,b的解则说明b问题复杂度更高。为了解决问题 A 
 所有np问题可以在多项式时间内归约为a,则称a为np完全问题；既不属于p，也不属于npc的np问题也是存在的;如果一个npc问题可以规约为另一个问题，则这个问题也是一个npc问题
 ## p,np,npc的关系
 ![](https://github.com/wangree/lc-practice/blob/master/algorithm-design/11.%E7%AE%97%E6%B3%95%E8%83%BD%E5%8A%9B%E7%9A%84%E6%9E%81%E9%99%90/Screenshot_20220117_093727_com.flyersoft.moonreaderp.jpg)
+需要注意的是就算是n=np,npc也是这两者的真子集
 ### 偶图
 偶图是一个图可以将其中点分为两组不相交的子集，它所有的边都是连接两个子集的点。偶图的充要条件是没有奇数长度的环
 ### 检测是二色图
